@@ -259,7 +259,8 @@ return [
         [
             'text' => 'Usuarios',
             'url' => 'users',
-            'icon' => 'fas fa-user'
+            'icon' => 'fas fa-user',
+            'active' => ['users*']
         ]
     ],
 
