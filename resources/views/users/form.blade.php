@@ -15,28 +15,28 @@
                 {!! Form::label('name', 'Nome') !!}
                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
                 @error('name')
-                    <div class="text-danger">{{$message}}</div>
+                    <small class="form-text text-danger">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group">
                 {!! Form::label('email', 'Email') !!}
                 {!! Form::email('email', null, ['class' => 'form-control']) !!}
                 @error('email')
-                   <div class="text-danger">{{$message}}</div>
+                   <small class="form-text text-danger">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group">
                 {!! Form::label('password', 'Senha') !!}
                 {!! Form::password('password',['class' => 'form-control']) !!}
                 @error('password')
-                   <div class="text-danger">{{$message}}</div>
+                   <small class="form-text text-danger">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group">
                 {!! Form::label('type', 'Tipo de Usuário') !!}
                 {!! Form::select('type', ['0'=>'Vendedor', '1'=>'Administrador'], null, ['class' => 'form-control']) !!}
                 @error('type')
-                    <div class="text-danger">{{$message}}</div>
+                    <small class="form-text text-danger">{{$message}}</small>
                 @enderror
             </div>
           <!-- /.card-body -->
