@@ -37,7 +37,7 @@ class UserController extends Controller
     public function store(StoreUserPost $request)
     {
         User::create($request->all());
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->withErro('mensagem de sucesso');
     }
 
     /**

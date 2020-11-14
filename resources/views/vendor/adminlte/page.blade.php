@@ -67,4 +67,13 @@
 @section('adminlte_js')
     @stack('js')
     @yield('js')
+
+    @if(Session::has('sucesso') || Session::has('erro'))
+       <script>
+           Swal.fire({
+               text: '{{ Session::get('sucesso') ?? Session::get('erro')}}',
+               icon: '{{Session::has('sucesso') ? 'success' : 'error'}}'
+           })
+       </script>
+    @endif
 @stop
