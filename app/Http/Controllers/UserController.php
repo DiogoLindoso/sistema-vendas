@@ -74,9 +74,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user = UserService::update($request->all(), $user);
+        if ($user) {
+            return redirect()->route('users.index')->withSucesso('Atualizado com sucesso');
+        }
+        return redirect()->route('users.edit')->withErro('Ocorreu um erro ao atualizar');
     }
 
     /**
@@ -85,8 +89,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user = UserService::destroy($user);
+        if ($user) {
+            return redirect()->route('users.index')->withSucesso('Atualizado com sucesso');
+        }
+        return redirect()->route('users.index')->withErro('Ocorreu um erro ao atualizar');
     }
 }
