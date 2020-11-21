@@ -23,6 +23,7 @@ class UserDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('action', function ($user) {
                 $acoes = link_to_route('users.edit', 'editar', $user, ['class' => 'btn btn-primary btn-sm']);
+                $acoes .= link_to_route('users.show', 'excluir', $user, ['class' => 'btn btn-danger btn-sm ml-1']);
             return $acoes;
             });
     }
@@ -68,7 +69,8 @@ class UserDataTable extends DataTable
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
+                ->width(120)
+                ->title('Acões')
                 ->addClass('text-center'),
             Column::make('id'),
             Column::make('name'),

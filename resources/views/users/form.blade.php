@@ -14,7 +14,6 @@
         @else
         {!! Form::open(['route' => 'users.store']) !!}
         @endif
-        
         <div class="card-body">
             <div class="form-group">
                 {!! Form::label('name', 'Nome') !!}
