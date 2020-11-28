@@ -92,9 +92,7 @@ class FabricanteController extends Controller
     public function destroy(Fabricante $fabricante)
     {
         $fabricante = FabricanteService::destroy($fabricante);
-        if ($fabricante) {
-            return redirect()->route('fabricantes.index')->withSucesso('Atualizado com sucesso');
-        }
-        return redirect()->route('fabricantes.index')->withErro('Ocorreu um erro ao atualizar');
+       
+        return response($fabricante, $fabricante ? 200 : 400);
     }
 }

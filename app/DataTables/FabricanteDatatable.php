@@ -49,7 +49,7 @@ class FabricanteDatatable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->setTableId('fabricantedatatable-table')
+            ->setTableId('fabricante-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
