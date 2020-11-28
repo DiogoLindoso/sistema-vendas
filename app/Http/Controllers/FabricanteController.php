@@ -92,7 +92,11 @@ class FabricanteController extends Controller
     public function destroy(Fabricante $fabricante)
     {
         $fabricante = FabricanteService::destroy($fabricante);
-       
         return response($fabricante, $fabricante ? 200 : 400);
+    }
+
+    public function fabricantesSelect(Request $request)
+    {
+        return FabricanteService::fabricantesSelect($request->all());
     }
 }

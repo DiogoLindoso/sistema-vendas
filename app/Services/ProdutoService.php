@@ -2,18 +2,18 @@
 
 namespace App\Services;
 
-use App\Fabricante;
+use App\Produto;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Throwable;
 
-class FabricanteService
+class ProdutoService
 {
 
     public static function store($request)
     {
         try {
-            return Fabricante::create($request->all());
+            return Produto::create($request->all());
         } catch (Throwable $th) {
             dd($th);
             Log::error($th->getMessage(), [
@@ -40,17 +40,5 @@ class FabricanteService
             Log::error($th->getMessage());
             return null;
         }
-    }
-    public static function fabricantesSelect($request)
-    {
-        if (isset($request['pesquisa'])) {
-            return Fabricante::select('id', 'nome as text')
-                ->where('nome', 'like', '%' . $request['pesquisa'] . '%')
-                ->limit(10)
-                ->get();
-        }
-        return Fabricante::select('id', 'nome as text')
-            ->limit(10)
-            ->get();
     }
 }
