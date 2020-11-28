@@ -15,7 +15,7 @@ class ProdutoService
         try {
             return Produto::create($request->all());
         } catch (Throwable $th) {
-            dd($th);
+            
             Log::error($th->getMessage(), [
                 'HashId' => (string) Str::uuid(),
                 'message' => 'Erro ao salvar'

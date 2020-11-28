@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\ProdutoDataTable;
 use App\Produto;
+use App\Services\ProdutoService;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -36,7 +37,11 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $produto = ProdutoService::store($request);
+        if ($produto) {
+            return redirect()->route('produtos.index')->withSucesso('Salvo com sucesso');
+        }
+        return back()->withInput()->withErro('Ocorreu um erro ao salvar');
     }
 
     /**
@@ -58,7 +63,7 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
-        //
+        return view('produtos.form', compact('produto'));
     }
 
     /**

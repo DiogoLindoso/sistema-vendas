@@ -10,7 +10,7 @@
     <div class="card card-primary">
         <!-- form start -->
         @if (isset($produto))
-        {!!Form::model($produto, ['route' => ['produtos.update', $user], 'method'=>'put'])!!}
+        {!!Form::model($produto, ['route' => ['produtos.update', $produto], 'method'=>'put'])!!}
         @else
         {!! Form::open(['route' => 'produtos.store']) !!}
         @endif
@@ -62,8 +62,17 @@
 
 @section('js')
 <script>
-    
+    var selecionado = []
+    @isset($produto)
+        var produto = {
+            id: '{{$produto->fabricante->id}}',
+            text: '{{$produto->fabricante->nome}}',
+            selected: true
+        }
+    selecionado.push(produto)
+    @endisset
     $("#fabricante_id").select2({
+        data: selecionado,
         ajax:{
             url: '{{route('fabricantes.select')}}',
             data: function(params) {
