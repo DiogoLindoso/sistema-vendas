@@ -94,4 +94,9 @@ class ClienteController extends Controller
         $cliente = ClienteService::destroy($cliente);
         return response($cliente, $cliente ? 200 : 400);
     }
+
+    public function clientesSelect(Request $request)
+    {
+        return ClienteService::clientesSelect($request->all());
+    }
 }

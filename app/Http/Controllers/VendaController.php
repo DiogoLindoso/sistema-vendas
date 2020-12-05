@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\ProdutoDataTable;
-use App\Produto;
-use App\Services\ProdutoService;
+use App\DataTables\VendaDataTable;
+use App\Services\ClienteService;
+use App\Venda;
 use Illuminate\Http\Request;
 
-class ProdutoController extends Controller
+class VendaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ProdutoDataTable $produtoDataTable)
+    public function index(VendaDataTable $vendaDataTable)
     {
-        return $produtoDataTable->render('produtos.index');
+        return $vendaDataTable->render('vendas.index');
     }
 
     /**
@@ -26,7 +26,9 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        return view('produtos.form');
+        return view('vendas.form', [
+            'formasPagamento' => Venda::FORMAS_PAGAMENTO
+        ]);
     }
 
     /**
@@ -37,43 +39,39 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        $produto = ProdutoService::store($request);
-        if ($produto) {
-            return redirect()->route('produtos.index')->withSucesso('Salvo com sucesso');
-        }
-        return back()->withInput()->withErro('Ocorreu um erro ao salvar');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Produto  $produto
+     * @param  \App\Venda  $venda
      * @return \Illuminate\Http\Response
      */
-    public function show(Produto $produto)
+    public function show(Venda $venda)
     {
-        return response()->json($produto);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Produto  $produto
+     * @param  \App\Venda  $venda
      * @return \Illuminate\Http\Response
      */
-    public function edit(Produto $produto)
+    public function edit(Venda $venda)
     {
-        return view('produtos.form', compact('produto'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Produto  $produto
+     * @param  \App\Venda  $venda
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request, Venda $venda)
     {
         //
     }
@@ -81,16 +79,11 @@ class ProdutoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Produto  $produto
+     * @param  \App\Venda  $venda
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produto $produto)
+    public function destroy(Venda $venda)
     {
         //
-    }
-
-    public function produtosSelect(Request $request)
-    {
-        return ProdutoService::produtosSelect($request->all());
     }
 }

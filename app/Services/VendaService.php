@@ -2,18 +2,18 @@
 
 namespace App\Services;
 
-use App\Cliente;
+use App\Venda;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Throwable;
 
-class ClienteService
+class VendaService
 {
 
     public static function store($request)
     {
         try {
-            return Cliente::create($request->all());
+            return Venda::create($request->all());
         } catch (Throwable $th) {
             Log::error($th->getMessage(), [
                 'HashId' => (string) Str::uuid(),
@@ -22,35 +22,22 @@ class ClienteService
             return null;
         }
     }
-    public static function update($request, $user)
+    public static function update($request, $venda)
     {
         try {
-            return $user->update($request);
+            return $venda->update($request);
         } catch (Throwable $th) {
             Log::error($th->getMessage());
             return null;
         }
     }
-    public static function destroy($user)
+    public static function destroy($venda)
     {
         try {
-            return $user->delete();
+            return $venda->delete();
         } catch (Throwable $th) {
             Log::error($th->getMessage());
             return null;
         }
-    }
-
-    public static function clientesSelect($request)
-    {
-        if (isset($request['pesquisa'])) {
-            return Cliente::select('id', 'nome as text')
-                ->where('nome', 'like', '%' . $request['pesquisa'] . '%')
-                ->limit(10)
-                ->get();
-        }
-        return Cliente::select('id', 'nome as text')
-            ->limit(10)
-            ->get();
     }
 }

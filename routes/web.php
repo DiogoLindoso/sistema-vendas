@@ -30,5 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('fabricantes', 'FabricanteController');
     Route::resource('produtos', 'ProdutoController');
     Route::resource('clientes', 'ClienteController');
+    Route::resource('vendas', 'VendaController');
     Route::get('fabricantes-select', 'FabricanteController@fabricantesSelect')->name('fabricantes.select');
+    Route::get('clientes-select', 'ClienteController@clientesSelect')->name('clientes.select');
+    Route::get('produtos-select', 'ProdutoController@produtosSelect')->name('produtos.select');
 });
